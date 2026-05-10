@@ -1,5 +1,6 @@
 {
-  "version": "1.0.0",
-  "launcherUrl": "https://github.com/tomala4850w/33-client-launcher/releases/download/v1.0.0/33ClientLauncher.jar",
-  "notes": "Pierwsza wersja 33 Client Launchera"
+  "version": "1.0.1",
+  "launcherUrl": "https://github.com/tomala4850w/33-client-launcher/releases/download/v1.0.1/33ClientLauncher.jar",
+  "clientVersion": "1.0.1",
+  "notes": "Dodano Ignore Cobweb"
 }
