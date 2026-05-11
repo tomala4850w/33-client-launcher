@@ -24,6 +24,27 @@ function startApi() {
     res.json({ ok: true, name: '33-client-license-server' });
   });
 
+  app.post('/admin/client', express.raw({ type: 'application/java-archive', limit: '64mb' }), (req, res) => {
+    if (!config.adminKey) {
+      res.status(403).json({ ok: false, reason: 'ADMIN_UPLOAD_DISABLED' });
+      return;
+    }
+
+    if (String(req.header('x-admin-key') || '') !== config.adminKey) {
+      res.status(401).json({ ok: false, reason: 'INVALID_ADMIN_KEY' });
+      return;
+    }
+
+    if (!Buffer.isBuffer(req.body) || req.body.length <= 0) {
+      res.status(400).json({ ok: false, reason: 'EMPTY_FILE' });
+      return;
+    }
+
+    fs.mkdirSync(require('node:path').dirname(config.clientJarPath), { recursive: true });
+    fs.writeFileSync(config.clientJarPath, req.body);
+    res.json({ ok: true, bytes: req.body.length, path: config.clientJarPath });
+  });
+
   app.get('/auth/login', (req, res) => {
     const state = crypto.randomBytes(16).toString('hex');
     const params = new URLSearchParams({

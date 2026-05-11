@@ -25,5 +25,6 @@ module.exports = {
   sessionTtlMinutes: Number(optional('SESSION_TTL_MINUTES', '10')),
   clientJarPath: optional('CLIENT_JAR_PATH', path.join(__dirname, '..', '..', 'build', 'libs', '33client-1.0.0.jar')),
   clientJarBase64: optional('CLIENT_JAR_BASE64', ''),
+  adminKey: optional('ADMIN_KEY', ''),
   dataDir: optional('DATA_DIR', path.join(__dirname, '..', 'data'))
 };
